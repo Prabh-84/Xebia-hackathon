@@ -15,6 +15,7 @@ export const getCarbon          = ()  => http.get('/carbon');
 export const getForecast        = ()  => http.get('/forecast');
 export const getRecommendations = ()  => http.get('/recommendations');
 export const getGreenScore      = ()  => http.get('/green-score');
+export const getProjects        = ()  => http.get('/projects');
 export const register           = (payload) => http.post('/register', payload);
 export const login              = (payload) => http.post('/login', payload);
 export const askCopilot         = (query) => http.get('/copilot', { params: { query } });

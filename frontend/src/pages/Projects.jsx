@@ -1,4 +1,4 @@
-import { getUsage } from '../services/api';
+import { getProjects } from '../services/api';
 import useFetch from '../hooks/useFetch';
 import Skeleton from '../components/ui/Skeleton';
 import GreenScoreBadge from '../components/ui/GreenScoreBadge';
@@ -6,7 +6,7 @@ import CostCarbonChart from '../components/charts/CostCarbonChart';
 import BudgetBar from '../components/ui/BudgetBar';
 
 export default function Projects() {
-  const { data, loading, error, refetch } = useFetch(getUsage);
+  const { data, loading, error, refetch } = useFetch(getProjects);
 
   if (loading) {
     return (
@@ -40,10 +40,10 @@ export default function Projects() {
     );
   }
 
-  // The backend returns aggregated usage data, so we'll mock the specific project arrays
-  // to satisfy the UI requirements of the hackathon while still using the real fetch call.
+  // Use backend data or default values if missing
   const vmHours = data?.vmHours || 0;
   const storageGB = data?.storageGB || 0;
+  const projectsList = Array.isArray(data) ? data : (data?.projects || []);
   
   const budgetInfo = {
     current: vmHours + storageGB,
@@ -56,11 +56,6 @@ export default function Projects() {
     costs: [vmHours * 0.1, storageGB * 0.05, (data?.networkGB || 0) * 0.02],
     carbon: [vmHours * 0.5, storageGB * 0.2, (data?.networkGB || 0) * 0.1]
   };
-
-  const projectsList = [
-    { name: 'Core API', provider: 'AWS', region: 'us-east-1', carbon: vmHours * 0.5, cost: vmHours * 0.1, score: 'B' },
-    { name: 'Data Lake', provider: 'GCP', region: 'eu-west', carbon: storageGB * 0.2, cost: storageGB * 0.05, score: 'C' }
-  ];
 
   return (
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
