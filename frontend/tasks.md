@@ -56,12 +56,12 @@ frontend/
 
 - [x] `N1.1` `npm create vite@latest frontend -- --template react`
 - [x] `N1.2` Install: `react-router-dom axios react-chartjs-2 chart.js`
-- [ ] `N1.3` Write `globals.css` — paste the design tokens below, font import, box-sizing reset
-- [ ] `N1.4` `Sidebar.jsx` — logo mark + 4 nav links with active highlight
-- [ ] `N1.5` `TopBar.jsx` — current page title (left) + username from localStorage (right)
-- [ ] `N1.6` `App.jsx` — layout wrapper (`<Sidebar />` + `<main>`) wired to React Router
-- [ ] `N1.7` `services/api.js` — Axios instance, baseURL from env, JWT interceptor, helpers for `/register`, `/login`, `/dashboard`, `/usage`, `/carbon`, `/forecast`, `/recommendations`, `/green-score`
-- [ ] `N1.8` `hooks/useFetch.js` — `useFetch(fn)` returns `{ data, loading, error, refetch }`
+- [x] `N1.3` Write `globals.css` — paste the design tokens below, font import, box-sizing reset
+- [x] `N1.4` `Sidebar.jsx` — logo mark + 4 nav links with active highlight
+- [x] `N1.5` `TopBar.jsx` — current page title (left) + username from localStorage (right)
+- [x] `N1.6` `App.jsx` — layout wrapper (`<Sidebar />` + `<main>`) wired to React Router
+- [x] `N1.7` `services/api.js` — Axios instance, baseURL from env, JWT interceptor, helpers for `/register`, `/login`, `/dashboard`, `/usage`, `/carbon`, `/forecast`, `/recommendations`, `/green-score`
+- [x] `N1.8` `hooks/useFetch.js` — `useFetch(fn)` returns `{ data, loading, error, refetch }`
 ---
 
 ## Hour 2 — Dashboard Page
