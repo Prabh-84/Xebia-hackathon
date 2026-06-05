@@ -72,7 +72,7 @@ export default function Dashboard() {
         <KPICard 
           label="Total Cost" 
           value={totalCost} 
-          unit="$" 
+          unit="₹" 
         />
         <KPICard 
           label="Avg Green Score" 

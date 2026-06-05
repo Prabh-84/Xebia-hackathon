@@ -8,11 +8,9 @@ export default function KPICard({ label, value, unit, delta }) {
   const sign = isPositive ? '+' : '';
 
   return (
-    <div style={{
-      background: 'var(--bg-card)',
-      border: '1px solid var(--border)',
+    <div className="glass-card" style={{
       borderRadius: 'var(--r-md)',
-      padding: '20px 24px',
+      padding: '24px',
       display: 'flex',
       flexDirection: 'column',
       gap: '8px'
