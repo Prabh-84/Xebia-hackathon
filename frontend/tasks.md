@@ -67,14 +67,14 @@ frontend/
 ## Hour 2 — Dashboard Page
 **Goal:** Landing page fully visible, data flowing.
 
-- [ ] `N2.1` `KPICard.jsx` — props: `label`, `value`, `unit`, `delta` (% change, positive/negative colored)
-- [ ] `N2.2` `GreenScoreBadge.jsx` — props: `score` (A–F); pill with color + label from the score map
-- [ ] `N2.3` `Skeleton.jsx` — CSS-only pulsing placeholder, used while any fetch is in-flight
-- [ ] `N2.4` `EmissionsChart.jsx` — Line chart, monthly CO2e, data from `GET /dashboard`
-- [ ] `N2.5` `Dashboard.jsx` layout:
+- [x] `N2.1` `KPICard.jsx` — props: `label`, `value`, `unit`, `delta` (% change, positive/negative colored)
+- [x] `N2.2` `GreenScoreBadge.jsx` — props: `score` (A–F); pill with color + label from the score map
+- [x] `N2.3` `Skeleton.jsx` — CSS-only pulsing placeholder, used while any fetch is in-flight
+- [x] `N2.4` `EmissionsChart.jsx` — Line chart, monthly CO2e, data from `GET /dashboard`
+- [x] `N2.5` `Dashboard.jsx` layout:
   - Row 1: 4 `KPICard`s — Total Carbon (kg), Total Cost ($), Avg Green Score, Active Projects
   - Row 2: `EmissionsChart` (left 65%) + Green Score summary panel (right 35%)
-- [ ] `N2.6` Show `Skeleton` while loading; show inline error text if fetch fails (no modal)
+- [x] `N2.6` Show `Skeleton` while loading; show inline error text if fetch fails (no modal)
 ---
 
 ## Hour 3 — Remaining Pages
