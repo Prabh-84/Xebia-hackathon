@@ -4,11 +4,9 @@ import TopBar from './components/layout/TopBar';
 import './styles/globals.css';
 
 import Dashboard from './pages/Dashboard';
-
-// Placeholder pages to satisfy the router for now
-const Forecast = () => <div style={{ padding: '32px' }}>Forecast Page</div>;
-const Recommendations = () => <div style={{ padding: '32px' }}>Recommendations Page</div>;
-const Projects = () => <div style={{ padding: '32px' }}>Projects Page</div>;
+import Forecast from './pages/Forecast';
+import Recommendations from './pages/Recommendations';
+import Projects from './pages/Projects';
 
 function App() {
   return (
