@@ -38,9 +38,12 @@ router.get("/dashboard", auth, (req, res) => {
 // Usage Data
 router.get("/usage", (req, res) => {
   res.json({
-    vmHours: 600,
-    storageGB: 1200,
-    networkGB: 400,
+    cpu_usage: 68,
+    memory_usage: 72,
+    network_traffic: 450,
+    power_consumption: 320,
+    energy_efficiency: 84,
+    timestamp: new Date(),
   });
 });
 
@@ -49,25 +52,39 @@ router.get("/usage", (req, res) => {
 router.get("/carbon", (req, res) => {
   res.json({
     carbonEmission: 850,
+    carbonIntensity: 65,
   });
 });
 
 
 // Forecast Data
 router.get("/forecast", (req, res) => {
-  res.json([
-    { month: "Apr", value: 180 },
-    { month: "May", value: 220 },
-    { month: "Jun", value: 260 },
-  ]);
+  res.json({
+    currentEmission: 850,
+    predictedEmission: 1050,
+    growthRate: 23.5,
+    trend: "Increasing",
+  });
 });
 
 
 // Recommendations
 router.get("/recommendations", (req, res) => {
   res.json([
-    "Rightsize VM",
-    "Archive Old Storage",
+    {
+      title: "Rightsize VM",
+      description: "Reduce oversized VM instances",
+      priority: "High",
+      expectedCarbonReduction: 120,
+      expectedCostReduction: 80,
+    },
+    {
+      title: "Archive Old Storage",
+      description: "Move unused data to cheaper storage",
+      priority: "Medium",
+      expectedCarbonReduction: 60,
+      expectedCostReduction: 40,
+    },
   ]);
 });
 
@@ -75,7 +92,32 @@ router.get("/recommendations", (req, res) => {
 // Green Score
 router.get("/green-score", (req, res) => {
   res.json({
-    score: "B",
+    greenScore: "B",
+    scoreValue: 75,
+    reason: "Moderate carbon intensity detected",
+  });
+});
+
+
+// Carbon Budget
+router.get("/budget", (req, res) => {
+  res.json({
+    budget: 1000,
+    currentEmission: 850,
+    forecastEmission: 1100,
+    utilization: 85,
+    remainingBudget: 150,
+    status: "Warning",
+  });
+});
+
+
+// GreenOps Copilot
+router.get("/copilot", (req, res) => {
+  res.json({
+    question: "Why did emissions increase?",
+    answer:
+      "Storage usage increased by 20% and network traffic increased by 15%. Recommended action: archive unused storage and resize VMs.",
   });
 });
 
