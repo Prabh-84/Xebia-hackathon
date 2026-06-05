@@ -7,19 +7,42 @@ import Dashboard from './pages/Dashboard';
 import Forecast from './pages/Forecast';
 import Recommendations from './pages/Recommendations';
 import Projects from './pages/Projects';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
-function AnimatedRoutes() {
+function AppContent() {
   const location = useLocation();
-  
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+
+  if (isAuthPage) {
+    return (
+      <div key={location.pathname} className="page-fade-enter">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+      </div>
+    );
+  }
+
   return (
-    <div key={location.pathname} className="page-fade-enter" style={{ height: '100%' }}>
-      <Routes location={location}>
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/forecast" element={<Forecast />} />
-        <Route path="/recommendations" element={<Recommendations />} />
-        <Route path="/projects" element={<Projects />} />
-      </Routes>
+    <div className="layout-container" style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-base)' }}>
+      <Sidebar />
+      <div className="main-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <TopBar />
+        <main style={{ flex: 1, overflowY: 'auto' }}>
+          <div key={location.pathname} className="page-fade-enter" style={{ height: '100%' }}>
+            <Routes location={location}>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/forecast" element={<Forecast />} />
+              <Route path="/recommendations" element={<Recommendations />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            </Routes>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
@@ -27,15 +50,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <Router>
-      <div className="layout-container" style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-base)' }}>
-        <Sidebar />
-        <div className="main-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-          <TopBar />
-          <main style={{ flex: 1, overflowY: 'auto' }}>
-            <AnimatedRoutes />
-          </main>
-        </div>
-      </div>
+      <AppContent />
     </Router>
   );
 }

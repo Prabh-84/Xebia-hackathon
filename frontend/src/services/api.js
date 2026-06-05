@@ -4,7 +4,8 @@ const http = axios.create({ baseURL: import.meta.env.VITE_API_URL });
 
 http.interceptors.request.use(cfg => {
   const t = localStorage.getItem('token');
-  if (t) cfg.headers.Authorization = `Bearer ${t}`;
+  // Backend authMiddleware currently expects raw token without "Bearer "
+  if (t) cfg.headers.Authorization = t;
   return cfg;
 });
 
