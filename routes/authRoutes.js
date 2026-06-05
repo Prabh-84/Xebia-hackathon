@@ -72,22 +72,19 @@ router.get("/forecast", (req, res) => {
 router.get("/recommendations", (req, res) => {
   res.json([
     {
-      title: "Rightsize VM",
-      description: "Reduce oversized VM instances",
-      priority: "High",
-      expectedCarbonReduction: 120,
-      expectedCostReduction: 80,
+      recommendation: "Rightsize EC2 Instances in us-east-1",
+      status: "High Impact",
+      expectedCarbonSaving: 150,
+      expectedCostSaving: 45,
     },
     {
-      title: "Archive Old Storage",
-      description: "Move unused data to cheaper storage",
-      priority: "Medium",
-      expectedCarbonReduction: 60,
-      expectedCostReduction: 40,
+      recommendation: "Archive old S3 storage data",
+      status: "Medium Impact",
+      expectedCarbonSaving: 80,
+      expectedCostSaving: 20,
     },
   ]);
 });
-
 
 // Green Score
 router.get("/green-score", (req, res) => {
