@@ -65,11 +65,13 @@ http.interceptors.request.use(cfg => {
 })
 
 export const getDashboard       = ()  => http.get('/dashboard')
+export const getUsage           = ()  => http.get('/usage')
+export const getCarbon          = ()  => http.get('/carbon')
 export const getForecast        = ()  => http.get('/forecast')
 export const getRecommendations = ()  => http.get('/recommendations')
 export const getGreenScore      = ()  => http.get('/green-score')
-export const getBudget          = ()  => http.get('/budget')
-export const getCopilot         = (q) => http.get(`/copilot?query=${encodeURIComponent(q)}`)
+export const register           = (payload) => http.post('/register', payload)
+export const login              = (payload) => http.post('/login', payload)
 
 4. src/hooks/useFetch.js
 jsimport { useState, useEffect, useCallback } from 'react'
@@ -94,7 +96,7 @@ export function useFetch(apiFn, deps = []) {
 Build a fixed left sidebar (240px wide on desktop). It must:
 
 Show the GreenOps logo/wordmark at the top using var(--font-display)
-Have 5 nav links: Dashboard /, Forecast /forecast, Recommendations /recommendations, Projects /projects, Copilot /copilot
+Have 4 nav links: Dashboard /, Forecast /forecast, Recommendations /recommendations, Projects /projects
 Use NavLink from react-router-dom; active link gets background: var(--bg-raised) and color: var(--green)
 On mobile (<768px) hide it completely — replaced by bottom tab bar
 
@@ -212,13 +214,8 @@ Table with columns: Project · Provider · Region · CO2e · Cost · Score
 Score column renders <GreenScoreBadge size="sm" />
 Sortable by CO2e column (click header toggles asc/desc)
 Copilot.jsx
-Full-height flex column:
-  - Scroll area (messages grow here)
-  - Fixed input row at bottom: text input + Send button
-
-User message: right-aligned bubble, bg var(--bg-raised), text var(--text-1)
-Bot message:  left-aligned bubble, bg var(--green-dim), text var(--text-2), font var(--font-data)
-On submit: push user message immediately, then call getCopilot(query), then push response. Show a Skeleton for 1 row while waiting.
+Do not build this page until a backend endpoint exists. Current frontend endpoints are limited to:
+POST /register, POST /login, GET /dashboard, GET /usage, GET /carbon, GET /forecast, GET /recommendations, GET /green-score.
 
 Rules You Must Follow
 

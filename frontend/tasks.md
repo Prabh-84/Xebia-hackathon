@@ -34,8 +34,7 @@ frontend/
 │   │   ├── Dashboard.jsx
 │   │   ├── Forecast.jsx
 │   │   ├── Recommendations.jsx
-│   │   ├── Projects.jsx
-│   │   └── Copilot.jsx
+│   │   └── Projects.jsx
 │   ├── services/
 │   │   └── api.js            ← single source for all HTTP calls
 │   ├── hooks/
@@ -58,10 +57,10 @@ frontend/
 - [ ] `N1.1` `npm create vite@latest frontend -- --template react`
 - [ ] `N1.2` Install: `react-router-dom axios react-chartjs-2 chart.js`
 - [ ] `N1.3` Write `globals.css` — paste the design tokens below, font import, box-sizing reset
-- [ ] `N1.4` `Sidebar.jsx` — logo mark + 5 nav links with active highlight
+- [ ] `N1.4` `Sidebar.jsx` — logo mark + 4 nav links with active highlight
 - [ ] `N1.5` `TopBar.jsx` — current page title (left) + username from localStorage (right)
 - [ ] `N1.6` `App.jsx` — layout wrapper (`<Sidebar />` + `<main>`) wired to React Router
-- [ ] `N1.7` `services/api.js` — Axios instance, baseURL from env, JWT interceptor
+- [ ] `N1.7` `services/api.js` — Axios instance, baseURL from env, JWT interceptor, helpers for `/register`, `/login`, `/dashboard`, `/usage`, `/carbon`, `/forecast`, `/recommendations`, `/green-score`
 - [ ] `N1.8` `hooks/useFetch.js` — `useFetch(fn)` returns `{ data, loading, error, refetch }`
 ---
 
@@ -79,7 +78,7 @@ frontend/
 ---
 
 ## Hour 3 — Remaining Pages
-**Goal:** All 5 pages connected to live APIs.
+**Goal:** All available pages connected to live APIs.
 
 - [ ] `N3.1` `ForecastChart.jsx` — solid line = historical, dashed line = predicted, shaded band = range; `GET /forecast`
 - [ ] `N3.2` `Forecast.jsx` — chart + one-line summary: *"Emissions projected to reach X kg by [month]"*
@@ -88,7 +87,7 @@ frontend/
 - [ ] `N3.5` `BudgetBar.jsx` — horizontal bar showing budget / current / forecast as segments; status chip Safe · Warning · Exceeded
 - [ ] `N3.6` `CostCarbonChart.jsx` — grouped bar per project, dual axis (cost USD + CO2e kg)
 - [ ] `N3.7` `Projects.jsx` — table: project name, provider, region, CO2e, cost, green score badge
-- [ ] `N3.8` `Copilot.jsx` — input at bottom, messages scroll above; calls `GET /copilot?query=`; user bubble (right) + bot bubble (left)
+- [ ] `N3.8` Skip `Copilot.jsx` until a backend endpoint exists; do not call `/copilot`
 ---
 
 ## Hour 4 — Polish & Deploy
@@ -198,11 +197,13 @@ http.interceptors.request.use(cfg => {
 })
 
 export const getDashboard       = ()  => http.get('/dashboard')
+export const getUsage           = ()  => http.get('/usage')
+export const getCarbon          = ()  => http.get('/carbon')
 export const getForecast        = ()  => http.get('/forecast')
 export const getRecommendations = ()  => http.get('/recommendations')
 export const getGreenScore      = ()  => http.get('/green-score')
-export const getBudget          = ()  => http.get('/budget')
-export const getCopilot         = (q) => http.get(`/copilot?query=${encodeURIComponent(q)}`)
+export const register           = (payload) => http.post('/register', payload)
+export const login              = (payload) => http.post('/login', payload)
 ```
 
 ---
