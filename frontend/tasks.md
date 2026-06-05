@@ -93,10 +93,10 @@ frontend/
 ## Hour 4 — Polish & Deploy
 **Goal:** Live URL, zero broken states.
 
-- [ ] `N4.1` Error state on every page — one line of red text + a "Retry" button that calls `refetch()`
-- [ ] `N4.2` Empty state — small icon + text when arrays come back empty
-- [ ] `N4.3` Mobile layout — sidebar becomes a bottom tab bar below 768px
-- [ ] `N4.4` Page fade-in on route change — 150ms CSS opacity transition, no library
+- [x] `N4.1` Error state on every page — one line of red text + a "Retry" button that calls `refetch()`
+- [x] `N4.2` Empty state — small icon + text when arrays come back empty
+- [x] `N4.3` Mobile layout — sidebar becomes a bottom tab bar below 768px
+- [x] `N4.4` Page fade-in on route change — 150ms CSS opacity transition, no library
 - [ ] `N4.5` Add `VITE_API_URL` to Vercel project environment variables
 - [ ] `N4.6` `vercel --prod`
 - [ ] `N4.7` Click through every page on live URL, fix any broken calls
