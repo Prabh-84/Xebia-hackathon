@@ -39,21 +39,33 @@ export default function Forecast() {
     );
   }
 
-  const items = Array.isArray(data) ? data : [];
+  // Support both old array schema and new object schema
+  let labels = [];
+  let predicted = [];
+  let historical = [];
+  let projectedAmount = 'N/A';
+  let targetMonth = 'the end of the year';
   
-  const labels = items.map(item => item.month);
-  const predicted = items.map(item => item.value);
-  // Mock historical since backend only gives predicted
-  const historical = items.map(item => item.value - 20);
+  if (Array.isArray(data)) {
+    labels = data.map(item => item.month);
+    predicted = data.map(item => item.value);
+    historical = data.map(item => item.value - 20);
+    projectedAmount = predicted[predicted.length - 1] || 'N/A';
+    targetMonth = labels[labels.length - 1] || 'the end of the year';
+  } else if (data && typeof data === 'object') {
+    // New Schema: { currentEmission, predictedEmission, trend, forecastWindow }
+    labels = ['Current', `+${data.forecastWindow || 30} Days`];
+    predicted = [null, data.predictedEmission];
+    historical = [data.currentEmission, null];
+    projectedAmount = data.predictedEmission ? data.predictedEmission.toFixed(2) : 'N/A';
+    targetMonth = `+${data.forecastWindow || 30} Days (${data.trend || 'stable'} trend)`;
+  }
   
   const chartData = {
     labels,
     historical,
     predicted
   };
-
-  const projectedAmount = predicted[predicted.length - 1] || 'N/A';
-  const targetMonth = labels[labels.length - 1] || 'the end of the year';
 
   return (
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
