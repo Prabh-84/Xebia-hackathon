@@ -54,7 +54,7 @@ frontend/
 ## Hour 1 — Scaffold & Shell
 **Goal:** App boots, routes work, layout renders.
 
-- [ ] `N1.1` `npm create vite@latest frontend -- --template react`
+- [x] `N1.1` `npm create vite@latest frontend -- --template react`
 - [ ] `N1.2` Install: `react-router-dom axios react-chartjs-2 chart.js`
 - [ ] `N1.3` Write `globals.css` — paste the design tokens below, font import, box-sizing reset
 - [ ] `N1.4` `Sidebar.jsx` — logo mark + 4 nav links with active highlight
