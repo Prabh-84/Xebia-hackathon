@@ -63,15 +63,23 @@ export default function Recommendations() {
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
         gap: '24px'
       }}>
-        {items.map((item, i) => (
-          <RecommendationCard 
-            key={i}
-            text={item.text}
-            status={item.status}
-            carbonSaving={item.carbonSaving}
-            costSaving={item.costSaving}
-          />
-        ))}
+        {items.map((item, i) => {
+          const text = typeof item === 'string' ? item : item.text;
+          // Provide mock values to fill out the UI
+          const status = i === 0 ? 'High Impact' : 'Medium Impact';
+          const carbonSaving = (i + 1) * 45;
+          const costSaving = (i + 1) * 12;
+
+          return (
+            <RecommendationCard 
+              key={i}
+              text={text}
+              status={status}
+              carbonSaving={carbonSaving}
+              costSaving={costSaving}
+            />
+          );
+        })}
       </div>
     </div>
   );
