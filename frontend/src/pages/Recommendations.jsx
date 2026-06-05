@@ -67,11 +67,11 @@ export default function Recommendations() {
           // Properly map the schema fields or fallback to mock
           const text = typeof item === 'string' 
             ? item 
-            : (item.recommendation || item.text || "Optimize Resource");
+            : (item.recommendation || item.title || item.text || "Optimize Resource");
             
-          const status = item.status || (i === 0 ? 'High Impact' : 'Medium Impact');
-          const carbonSaving = item.expectedCarbonSaving || ((i + 1) * 45);
-          const costSaving = item.expectedCostSaving || ((i + 1) * 12);
+          const status = item.status || item.priority || (i === 0 ? 'High Impact' : 'Medium Impact');
+          const carbonSaving = item.expectedCarbonSaving || item.expectedCarbonReduction || ((i + 1) * 45);
+          const costSaving = item.expectedCostSaving || item.expectedCostReduction || ((i + 1) * 12);
 
           return (
             <RecommendationCard 

@@ -17,4 +17,4 @@ export const getRecommendations = ()  => http.get('/recommendations');
 export const getGreenScore      = ()  => http.get('/green-score');
 export const register           = (payload) => http.post('/register', payload);
 export const login              = (payload) => http.post('/login', payload);
-export const askCopilot         = (query) => http.post('/copilot', { query });
+export const askCopilot         = (query) => http.get('/copilot', { params: { query } });
