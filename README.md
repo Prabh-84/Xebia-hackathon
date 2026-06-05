@@ -155,19 +155,19 @@ npm run dev
 
 ## 📡 API Reference
 
-| Method | Endpoint | Auth | Description |
+| Method | Endpoint | Description |
 |--------|----------|------|-------------|
-| `POST` | `/register` | ❌ | Register a new user |
-| `POST` | `/login` | ❌ | Login and receive JWT token |
-| `GET` | `/dashboard` | ✅ | Carbon, cost, green score, active projects |
-| `GET` | `/usage` | ❌ | CPU, memory, network, power telemetry |
-| `GET` | `/carbon` | ❌ | Total carbon emission & intensity |
-| `GET` | `/forecast` | ❌ | AI predicted emission + trend |
-| `GET` | `/recommendations` | ❌ | Array of AI optimization suggestions |
-| `GET` | `/green-score` | ❌ | A-F grade + score value + reason |
-| `GET` | `/budget` | ❌ | Budget utilization status |
-| `GET` | `/projects` | ❌ | List of cloud projects with emissions |
-| `GET` | `/copilot?query=` | ❌ | Natural language AI response |
+| `POST` | `/register`  | Register a new user |
+| `POST` | `/login`  | Login and receive JWT token |
+| `GET` | `/dashboard`  | Carbon, cost, green score, active projects |
+| `GET` | `/usage`  | CPU, memory, network, power telemetry |
+| `GET` | `/carbon`  | Total carbon emission & intensity |
+| `GET` | `/forecast`  | AI predicted emission + trend |
+| `GET` | `/recommendations`  | Array of AI optimization suggestions |
+| `GET` | `/green-score`  | A-F grade + score value + reason |
+| `GET` | `/budget`  | Budget utilization status |
+| `GET` | `/projects`  | List of cloud projects with emissions |
+| `GET` | `/copilot?query=`  | Natural language AI response |
 
 ### Sample Responses
 
