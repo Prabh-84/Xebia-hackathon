@@ -43,7 +43,22 @@ router.get("/dashboard", auth, (req, res) => {
   });
 });
 
-
+router.get("/projects", (req, res) => {
+  res.json([
+    {
+      id: 1,
+      name: "AWS Production Cluster",
+      status: "Active",
+      carbonEmission: 152
+    },
+    {
+      id: 2,
+      name: "Azure Analytics",
+      status: "Active",
+      carbonEmission: 98
+    }
+  ]);
+});
 // Usage Data
 router.get("/usage", (req, res) => {
   res.json({
