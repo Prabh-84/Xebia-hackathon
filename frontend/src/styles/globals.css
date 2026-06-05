@@ -33,6 +33,21 @@
   --r-lg: 24px;
 }
 
+/* Light Theme Overrides */
+.light-mode {
+  --bg-base:      #f8fafc;
+  --bg-card:      #ffffff;
+  --bg-raised:    #f1f5f9;
+  --bg-hover:     #e2e8f0;
+
+  --text-1:       #0f172a;
+  --text-2:       #334155;
+  --text-3:       #64748b;
+
+  --border:       rgba(0,0,0,0.1);
+  --border-strong:rgba(0,0,0,0.2);
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { 
   background: radial-gradient(circle at 50% 0%, #102415 0%, var(--bg-base) 60%);
