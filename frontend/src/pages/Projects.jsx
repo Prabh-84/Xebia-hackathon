@@ -112,7 +112,7 @@ export default function Projects() {
                   <td style={{ padding: '16px 24px' }}>{p.provider}</td>
                   <td style={{ padding: '16px 24px' }}>{p.region}</td>
                   <td style={{ padding: '16px 24px' }}>{p.carbon}</td>
-                  <td style={{ padding: '16px 24px' }}>${p.cost}</td>
+                  <td style={{ padding: '16px 24px' }}>₹{p.cost}</td>
                   <td style={{ padding: '16px 24px' }}>
                     <GreenScoreBadge score={p.score} />
                   </td>

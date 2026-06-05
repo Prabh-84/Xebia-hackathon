@@ -51,9 +51,9 @@ export default function BudgetBar({ current, forecast, budget }) {
       </div>
       
       <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-3)', fontSize: '12px' }}>
-        <span>Current: ${current}</span>
-        <span>Forecast: ${totalProjected}</span>
-        <span>Budget: ${budget}</span>
+        <span>Current: ₹{current}</span>
+        <span>Forecast: ₹{totalProjected}</span>
+        <span>Budget: ₹{budget}</span>
       </div>
     </div>
   );

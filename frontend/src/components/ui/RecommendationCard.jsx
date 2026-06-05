@@ -2,9 +2,7 @@ export default function RecommendationCard({ text, status, carbonSaving, costSav
   const statusColor = status === 'High Impact' ? 'var(--green)' : 'var(--amber)';
 
   return (
-    <div style={{
-      background: 'var(--bg-card)',
-      border: '1px solid var(--border)',
+    <div className="glass-card" style={{
       borderRadius: 'var(--r-md)',
       padding: '20px 24px',
       display: 'flex',
@@ -47,7 +45,7 @@ export default function RecommendationCard({ text, status, carbonSaving, costSav
           fontSize: '13px',
           color: 'var(--text-2)'
         }}>
-          ↓ ${costSaving}
+          ↓ ₹{costSaving}
         </div>
       </div>
     </div>
