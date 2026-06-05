@@ -7,6 +7,7 @@ export default function Sidebar() {
     { name: 'Forecast', path: '/forecast' },
     { name: 'Recommendations', path: '/recommendations' },
     { name: 'Projects', path: '/projects' },
+    { name: 'Copilot', path: '/copilot' },
   ];
 
   return (

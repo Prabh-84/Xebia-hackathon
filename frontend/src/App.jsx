@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Forecast from './pages/Forecast';
 import Recommendations from './pages/Recommendations';
 import Projects from './pages/Projects';
+import Copilot from './pages/Copilot';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -38,6 +39,7 @@ function AppContent() {
               <Route path="/forecast" element={<Forecast />} />
               <Route path="/recommendations" element={<Recommendations />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/copilot" element={<Copilot />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>
