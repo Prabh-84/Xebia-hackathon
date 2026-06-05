@@ -33,7 +33,7 @@ function AppContent() {
         <main style={{ flex: 1, overflowY: 'auto' }}>
           <div key={location.pathname} className="page-fade-enter" style={{ height: '100%' }}>
             <Routes location={location}>
-              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/" element={<Navigate to="/login" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/forecast" element={<Forecast />} />
               <Route path="/recommendations" element={<Recommendations />} />

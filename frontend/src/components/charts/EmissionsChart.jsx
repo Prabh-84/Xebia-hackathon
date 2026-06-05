@@ -48,7 +48,11 @@ export default function EmissionsChart({ data }) {
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        display: false
+        position: 'top',
+        labels: {
+          color: getComputedStyle(document.body).getPropertyValue('--text-2').trim() || '#86efac',
+          font: { family: "'DM Mono', monospace" }
+        }
       },
       tooltip: {
         backgroundColor: 'rgba(15, 26, 18, 0.9)',
