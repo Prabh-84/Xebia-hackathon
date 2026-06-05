@@ -39,12 +39,26 @@ export default function Forecast() {
     );
   }
 
-  const { chartData, projectedAmount, targetMonth } = data || {};
+  const items = Array.isArray(data) ? data : [];
+  
+  const labels = items.map(item => item.month);
+  const predicted = items.map(item => item.value);
+  // Mock historical since backend only gives predicted
+  const historical = items.map(item => item.value - 20);
+  
+  const chartData = {
+    labels,
+    historical,
+    predicted
+  };
+
+  const projectedAmount = predicted[predicted.length - 1] || 'N/A';
+  const targetMonth = labels[labels.length - 1] || 'the end of the year';
 
   return (
     <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
       <p style={{ color: 'var(--text-2)', fontSize: '18px' }}>
-        Emissions projected to reach <strong style={{ color: 'var(--amber)' }}>{projectedAmount || 'N/A'} kg</strong> by {targetMonth || 'the end of the year'}
+        Emissions projected to reach <strong style={{ color: 'var(--amber)' }}>{projectedAmount} kg</strong> by {targetMonth}
       </p>
       <ForecastChart data={chartData} />
     </div>
