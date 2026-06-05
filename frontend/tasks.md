@@ -80,14 +80,14 @@ frontend/
 ## Hour 3 — Remaining Pages
 **Goal:** All available pages connected to live APIs.
 
-- [ ] `N3.1` `ForecastChart.jsx` — solid line = historical, dashed line = predicted, shaded band = range; `GET /forecast`
-- [ ] `N3.2` `Forecast.jsx` — chart + one-line summary: *"Emissions projected to reach X kg by [month]"*
-- [ ] `N3.3` `RecommendationCard.jsx` — props: `text`, `status`, `carbonSaving`, `costSaving`; two small saving pills at bottom
-- [ ] `N3.4` `Recommendations.jsx` — card grid (2-col desktop, 1-col mobile); `GET /recommendations`
-- [ ] `N3.5` `BudgetBar.jsx` — horizontal bar showing budget / current / forecast as segments; status chip Safe · Warning · Exceeded
-- [ ] `N3.6` `CostCarbonChart.jsx` — grouped bar per project, dual axis (cost USD + CO2e kg)
-- [ ] `N3.7` `Projects.jsx` — table: project name, provider, region, CO2e, cost, green score badge
-- [ ] `N3.8` Skip `Copilot.jsx` until a backend endpoint exists; do not call `/copilot`
+- [x] `N3.1` `ForecastChart.jsx` — solid line = historical, dashed line = predicted, shaded band = range; `GET /forecast`
+- [x] `N3.2` `Forecast.jsx` — chart + one-line summary: *"Emissions projected to reach X kg by [month]"*
+- [x] `N3.3` `RecommendationCard.jsx` — props: `text`, `status`, `carbonSaving`, `costSaving`; two small saving pills at bottom
+- [x] `N3.4` `Recommendations.jsx` — card grid (2-col desktop, 1-col mobile); `GET /recommendations`
+- [x] `N3.5` `BudgetBar.jsx` — horizontal bar showing budget / current / forecast as segments; status chip Safe · Warning · Exceeded
+- [x] `N3.6` `CostCarbonChart.jsx` — grouped bar per project, dual axis (cost USD + CO2e kg)
+- [x] `N3.7` `Projects.jsx` — table: project name, provider, region, CO2e, cost, green score badge
+- [x] `N3.8` Skip `Copilot.jsx` until a backend endpoint exists; do not call `/copilot`
 ---
 
 ## Hour 4 — Polish & Deploy
