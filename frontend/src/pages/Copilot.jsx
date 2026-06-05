@@ -28,8 +28,8 @@ export default function Copilot() {
     try {
       // Trying to fetch from real API if it exists
       const res = await askCopilot(userMsg);
-      // Depending on backend schema, it might be res.data.response or res.data.answer
-      const reply = res.data?.response || res.data?.answer || res.data || "Analysis complete. I recommend reviewing your recent storage spikes.";
+      // Backend returns { question, answer } — check answer first
+      const reply = res.data?.answer || res.data?.response || res.data || "Analysis complete. I recommend reviewing your recent storage spikes.";
       
       setMessages(prev => [...prev, { role: 'assistant', text: typeof reply === 'string' ? reply : JSON.stringify(reply) }]);
     } catch (err) {

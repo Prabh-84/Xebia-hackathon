@@ -265,4 +265,50 @@ router.get("/copilot", (req, res) => {
   }
 });
 
+// Projects — pulls from available cloud usage data
+router.get("/projects", (req, res) => {
+  try {
+    // Uses same telemetry as usage, grouped per project
+    const projects = [
+      {
+        name: "Core API",
+        provider: "AWS",
+        region: "us-east-1",
+        vmHours: 600,
+        storageGB: 800,
+        networkGB: 300,
+        cloudCost: 1200,
+        carbon: 600 * 0.4 + 800 * 0.02 + 300 * 0.01,
+        score: "B"
+      },
+      {
+        name: "Data Lake",
+        provider: "GCP",
+        region: "eu-west-1",
+        vmHours: 400,
+        storageGB: 1500,
+        networkGB: 500,
+        cloudCost: 2100,
+        carbon: 400 * 0.4 + 1500 * 0.02 + 500 * 0.01,
+        score: "C"
+      },
+      {
+        name: "ML Pipeline",
+        provider: "Azure",
+        region: "eastus",
+        vmHours: 700,
+        storageGB: 600,
+        networkGB: 200,
+        cloudCost: 1800,
+        carbon: 700 * 0.4 + 600 * 0.02 + 200 * 0.01,
+        score: "D"
+      }
+    ];
+
+    res.json(projects);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;

@@ -40,21 +40,28 @@ export default function Projects() {
     );
   }
 
-  // Use backend data or default values if missing
-  const vmHours = data?.vmHours || 0;
-  const storageGB = data?.storageGB || 0;
+  // Use backend data — now an array of project objects
   const projectsList = Array.isArray(data) ? data : (data?.projects || []);
   
+  // Aggregate totals from all projects for budget bar and chart
+  const totalVmHours = projectsList.reduce((sum, p) => sum + (p.vmHours || 0), 0);
+  const totalStorage = projectsList.reduce((sum, p) => sum + (p.storageGB || 0), 0);
+  const totalNetwork = projectsList.reduce((sum, p) => sum + (p.networkGB || 0), 0);
+  const totalCost = projectsList.reduce((sum, p) => sum + (p.cloudCost || 0), 0);
+  const totalCarbon = projectsList.reduce((sum, p) => sum + (p.carbon || 0), 0);
+
   const budgetInfo = {
-    current: vmHours + storageGB,
-    forecast: 400,
-    budget: 2500
+    current: Math.round(totalCarbon),
+    forecast: Math.round(totalCarbon * 1.1),
+    budget: 5000
   };
 
   const chartData = {
-    labels: ['Compute', 'Storage', 'Network'],
-    costs: [vmHours * 0.1, storageGB * 0.05, (data?.networkGB || 0) * 0.02],
-    carbon: [vmHours * 0.5, storageGB * 0.2, (data?.networkGB || 0) * 0.1]
+    labels: projectsList.map(p => p.name) .length > 0 
+      ? projectsList.map(p => p.name) 
+      : ['Compute', 'Storage', 'Network'],
+    costs: projectsList.map(p => p.cloudCost || 0),
+    carbon: projectsList.map(p => p.carbon || 0)
   };
 
   return (
@@ -107,7 +114,7 @@ export default function Projects() {
                   <td style={{ padding: '16px 24px' }}>{p.provider}</td>
                   <td style={{ padding: '16px 24px' }}>{p.region}</td>
                   <td style={{ padding: '16px 24px' }}>{p.carbon}</td>
-                  <td style={{ padding: '16px 24px' }}>₹{p.cost}</td>
+                  <td style={{ padding: '16px 24px' }}>₹{(p.cloudCost || p.cost || 0).toLocaleString('en-IN')}</td>
                   <td style={{ padding: '16px 24px' }}>
                     <GreenScoreBadge score={p.score} />
                   </td>
