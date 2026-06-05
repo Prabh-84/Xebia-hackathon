@@ -1,4 +1,13 @@
 const express = require("express");
+const { processMetrics } = require("../backend/ml/carbonEngine");
+const { generateGreenScore } = require("../backend/ml/greenScoreEngine");
+const { generateForecast } = require("../backend/ml/forecastEngine");
+const { evaluateBudget } = require("../backend/ml/budgetEngine");
+const { generateRecommendations } = require("../backend/ml/recommendationEngine");
+const {
+  generateCopilotResponse,
+  SUPPORTED_QUERIES
+} = require("../backend/ml/copilotEngine");
 
 const router = express.Router();
 
@@ -50,72 +59,210 @@ router.get("/usage", (req, res) => {
 
 // Carbon Data
 router.get("/carbon", (req, res) => {
-  res.json({
-    carbonEmission: 850,
-    carbonIntensity: 65,
-  });
-});
+  try {
+    const metrics = {
+      cpu_usage: 68,
+      memory_usage: 72,
+      network_traffic: 450,
+      power_consumption: 320,
+      energy_efficiency: 84,
+    };
 
+    const result = processMetrics(metrics);
+
+    res.json({
+      carbonEmission: result.calculatedEmissionsKgCO2e,
+      carbonIntensity: 0.475,
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+});
 
 // Forecast Data
 router.get("/forecast", (req, res) => {
-  res.json({
-    currentEmission: 850,
-    predictedEmission: 1050,
-    growthRate: 23.5,
-    trend: "Increasing",
-  });
+  try {
+
+    const historicalEmissions = [
+      120,
+      135,
+      150,
+      165,
+      180
+    ];
+
+    const result =
+      generateForecast(
+        historicalEmissions,
+        1
+      );
+
+    res.json(result);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
 });
 
 
 // Recommendations
 router.get("/recommendations", (req, res) => {
-  res.json([
-    {
-      recommendation: "Rightsize EC2 Instances in us-east-1",
-      status: "High Impact",
-      expectedCarbonSaving: 150,
-      expectedCostSaving: 45,
-    },
-    {
-      recommendation: "Archive old S3 storage data",
-      status: "Medium Impact",
-      expectedCarbonSaving: 80,
-      expectedCostSaving: 20,
-    },
-  ]);
+  try {
+
+    const forecast = generateForecast(
+      [120, 135, 150, 165, 180],
+      1
+    );
+
+    const recommendations =
+      generateRecommendations({
+        cpu_usage: 10,
+        memory_usage: 95,
+        power_consumption: 320,
+        energy_efficiency: 0.25,
+        greenScore: "D",
+        carbonEmission: 152,
+        forecast
+      });
+
+    const frontendResponse =
+      recommendations.map(item => ({
+        recommendation: item.title,
+        status: item.priority,
+        expectedCarbonSaving:
+          item.expectedCarbonReduction,
+        expectedCostSaving:
+          item.expectedCostReduction
+      }));
+
+    res.json(frontendResponse);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
 });
 
 // Green Score
 router.get("/green-score", (req, res) => {
-  res.json({
-    greenScore: "B",
-    scoreValue: 75,
-    reason: "Moderate carbon intensity detected",
-  });
+  try {
+    const metrics = {
+      cpu_usage: 68,
+      memory_usage: 72,
+      network_traffic: 450,
+      power_consumption: 320,
+      energy_efficiency: 0.84
+    };
+
+    const carbonResult = processMetrics(metrics);
+
+    const result = generateGreenScore(
+      carbonResult.calculatedEmissionsKgCO2e,
+      0.475,
+      metrics.energy_efficiency
+    );
+
+    res.json(result);
+
+  } catch (error) {
+    res.status(500).json({
+      message: error.message
+    });
+  }
 });
 
 
 // Carbon Budget
 router.get("/budget", (req, res) => {
-  res.json({
-    budget: 1000,
-    currentEmission: 850,
-    forecastEmission: 1100,
-    utilization: 85,
-    remainingBudget: 150,
-    status: "Warning",
-  });
-});
+  try {
 
+    const historicalEmissions = [
+      120,
+      135,
+      150,
+      165,
+      180
+    ];
+
+    const forecast =
+      generateForecast(
+        historicalEmissions,
+        1
+      );
+
+    const result =
+      evaluateBudget(
+        250, // carbon budget
+        forecast.currentEmission,
+        forecast.predictedEmission
+      );
+
+    res.json(result);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
+});
 
 // GreenOps Copilot
 router.get("/copilot", (req, res) => {
-  res.json({
-    question: "Why did emissions increase?",
-    answer:
-      "Storage usage increased by 20% and network traffic increased by 15%. Recommended action: archive unused storage and resize VMs.",
-  });
+  try {
+
+    const forecast = generateForecast(
+      [120, 135, 150, 165, 180],
+      1
+    );
+
+    const recommendations =
+      generateRecommendations({
+        cpu_usage: 10,
+        memory_usage: 95,
+        power_consumption: 320,
+        energy_efficiency: 0.25,
+        greenScore: "D",
+        carbonEmission: 152,
+        forecast
+      });
+
+    const answer =
+      generateCopilotResponse(
+        SUPPORTED_QUERIES.HOW_TO_REDUCE,
+        {
+          greenScore: "D",
+          carbonEmission: 152,
+          carbonIntensity: 0.475,
+          recommendations,
+          forecast,
+          budgetStatus: "Warning"
+        }
+      );
+
+    res.json({
+      question: SUPPORTED_QUERIES.HOW_TO_REDUCE,
+      answer
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
 });
 
 module.exports = router;
