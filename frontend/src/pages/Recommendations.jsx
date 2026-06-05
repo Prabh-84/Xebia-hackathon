@@ -64,11 +64,14 @@ export default function Recommendations() {
         gap: '24px'
       }}>
         {items.map((item, i) => {
-          const text = typeof item === 'string' ? item : item.text;
-          // Provide mock values to fill out the UI
-          const status = i === 0 ? 'High Impact' : 'Medium Impact';
-          const carbonSaving = (i + 1) * 45;
-          const costSaving = (i + 1) * 12;
+          // Properly map the schema fields or fallback to mock
+          const text = typeof item === 'string' 
+            ? item 
+            : (item.recommendation || item.text || "Optimize Resource");
+            
+          const status = item.status || (i === 0 ? 'High Impact' : 'Medium Impact');
+          const carbonSaving = item.expectedCarbonSaving || ((i + 1) * 45);
+          const costSaving = item.expectedCostSaving || ((i + 1) * 12);
 
           return (
             <RecommendationCard 
