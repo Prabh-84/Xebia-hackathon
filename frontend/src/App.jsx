@@ -26,7 +26,7 @@ function AppContent() {
   }
 
   return (
-    <div className="layout-container" style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'var(--bg-base)' }}>
+    <div className="layout-container" style={{ display: 'flex', minHeight: '100vh', backgroundColor: 'transparent' }}>
       <Sidebar />
       <div className="main-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         <TopBar />

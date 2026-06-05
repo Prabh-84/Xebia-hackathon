@@ -19,14 +19,12 @@ export default function Register() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: 'var(--bg-base)',
+      backgroundColor: 'transparent',
       padding: '24px'
     }}>
-      <div style={{
+    <div className="glass-card" style={{
         width: '100%',
         maxWidth: '400px',
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border)',
         borderRadius: 'var(--r-md)',
         padding: '32px',
         display: 'flex',
