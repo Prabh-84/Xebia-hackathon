@@ -1,0 +1,47 @@
+[
+    {
+      "projectId": "P004",
+      "provider": "Azure",
+      "month": "Jan",
+      "vmHours": 400,
+      "storageGB": 600,
+      "networkGB": 250,
+      "cloudCost": 1000
+    },
+    {
+      "projectId": "P004",
+      "provider": "Azure",
+      "month": "Feb",
+      "vmHours": 450,
+      "storageGB": 700,
+      "networkGB": 280,
+      "cloudCost": 1200
+    },
+    {
+      "projectId": "P005",
+      "provider": "Azure",
+      "month": "Jan",
+      "vmHours": 800,
+      "storageGB": 1800,
+      "networkGB": 650,
+      "cloudCost": 3000
+    },
+    {
+      "projectId": "P005",
+      "provider": "Azure",
+      "month": "Feb",
+      "vmHours": 850,
+      "storageGB": 1900,
+      "networkGB": 700,
+      "cloudCost": 3200
+    },
+    {
+      "projectId": "P006",
+      "provider": "Azure",
+      "month": "Mar",
+      "vmHours": 550,
+      "storageGB": 1000,
+      "networkGB": 350,
+      "cloudCost": 1800
+    }
+  ]
