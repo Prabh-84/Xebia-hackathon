@@ -45,7 +45,7 @@ export default function Recommendations() {
     );
   }
 
-  const items = data || [];
+  const items = Array.isArray(data) ? data : (data?.recommendations || []);
 
   if (items.length === 0) {
     return (
